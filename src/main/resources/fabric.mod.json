@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "playerswap",
+	"version": "${version}",
+	"name": "Player Swap",
+	"description": "This mod switches player positions on consistent timers",
+	"authors": [
+		"Flameball"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/playerswap/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.blocsoc.playerswap.PlayerSwap"
+		],
+		"fabric-datagen": [
+			"net.blocsoc.playerswap.PlayerSwapDataGenerator"
+		],
+		"client": [
+			"net.blocsoc.playerswap.PlayerSwapClient"
+		]
+	},
+	"mixins": [
+		"playerswap.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.9",
+		"minecraft": "~1.21.4",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
