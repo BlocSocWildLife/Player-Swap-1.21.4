@@ -6,9 +6,11 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.network.packet.s2c.play.PositionFlag;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 
 import java.util.EnumSet;
+import java.util.List;
 
 
 public class GetAllPlayerPositions {
@@ -21,10 +23,12 @@ public class GetAllPlayerPositions {
 
     private static int run(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
 
-        context.getSource().getServer().getPlayerManager().getPlayerList().forEach(player -> {
-            player.teleport(player.getServerWorld(), player.getX(), player.getY() + 10, player.getZ(), EnumSet.noneOf(PositionFlag.class), player.getYaw(), player.getPitch(), false);
-        });
 
+        List<ServerPlayerEntity> temp = context.getSource().getServer().getPlayerManager().getPlayerList();
+
+        temp.getFirst().interactionManager.getGameMode();
+
+        //need to make a list of all survival mode players, randomise it, and then swap
         return 1;
 
     }
