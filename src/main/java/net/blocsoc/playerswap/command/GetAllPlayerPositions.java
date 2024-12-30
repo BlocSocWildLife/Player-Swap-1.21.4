@@ -21,8 +21,8 @@ public class GetAllPlayerPositions {
 
     //run the command by typing "/player find"
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher, boolean dedicated) {
-        dispatcher.register(CommandManager.literal("player")
-                .then(CommandManager.literal("find").executes(GetAllPlayerPositions::run)));
+        dispatcher.register(CommandManager.literal("shuffle")
+                .then(CommandManager.literal("player").executes(GetAllPlayerPositions::run)));
     }
 
     private static int run(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
@@ -39,6 +39,8 @@ public class GetAllPlayerPositions {
         }
 
         Collections.shuffle(survivalPlayers);
+
+        int startPlayers = survivalPlayers.size();
 
         while (!survivalPlayers.isEmpty()){
 
@@ -59,10 +61,14 @@ public class GetAllPlayerPositions {
             }
 
             else{
+
+                context.getSource().sendFeedback(() -> (Text) Text.literal("Attempted to shuffle 1 player and errored out"), false);
                 return -1;
             }
 
         }
+
+        context.getSource().sendFeedback(() -> (Text) Text.literal("Successfully shuffled " + survivalPlayers + " players"), false);
 
         return 1;
 
