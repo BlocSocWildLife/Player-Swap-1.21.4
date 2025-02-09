@@ -22,7 +22,7 @@ public class GetAllPlayerPositions {
     //run the command by typing "/player find"
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher, boolean dedicated) {
         dispatcher.register(CommandManager.literal("shuffle")
-                .then(CommandManager.literal("player").executes(GetAllPlayerPositions::run)));
+                .then(CommandManager.literal("player").requires(source -> source.hasPermissionLevel(2)).executes(GetAllPlayerPositions::run)));
     }
 
     private static int run(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
