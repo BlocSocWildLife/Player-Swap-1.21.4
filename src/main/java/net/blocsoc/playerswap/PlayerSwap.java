@@ -1,7 +1,9 @@
 package net.blocsoc.playerswap;
 
+import net.blocsoc.playerswap.command.GetAllPlayerPositions;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,5 +22,10 @@ public class PlayerSwap implements ModInitializer {
 		// Proceed with mild caution.
 
 		LOGGER.info("Hello Fabric world!");
+		registerCommands();
+	}
+
+	private static void registerCommands(){
+		CommandRegistrationCallback.EVENT.register(GetAllPlayerPositions::register);
 	}
 }
